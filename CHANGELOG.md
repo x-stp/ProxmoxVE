@@ -493,11 +493,23 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 ### 🆕 New Scripts
 
-  - Flame ([#15464](https://github.com/community-scripts/ProxmoxVE/pull/15464))
+  - Koffan ([#15467](https://github.com/community-scripts/ProxmoxVE/pull/15467))
+- Etherpad ([#15468](https://github.com/community-scripts/ProxmoxVE/pull/15468))
+- Flame ([#15464](https://github.com/community-scripts/ProxmoxVE/pull/15464))
 
 ### 🚀 Updated Scripts
 
   - chore(ct): sync snapotter defaults with PocketBase [@github-actions[bot]](https://github.com/github-actions[bot]) ([#15472](https://github.com/community-scripts/ProxmoxVE/pull/15472))
+
+  - #### 🐞 Bug Fixes
+
+    - feat: update nginx proxy manager to trixie [@asylumexp](https://github.com/asylumexp) ([#15457](https://github.com/community-scripts/ProxmoxVE/pull/15457))
+
+### 💾 Core
+
+  - #### ✨ New Features
+
+    - [tools.func]: add edit_yaml_config function [@tremor021](https://github.com/tremor021) ([#15484](https://github.com/community-scripts/ProxmoxVE/pull/15484))
 
 ## 2026-06-28
 
