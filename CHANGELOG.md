@@ -491,6 +491,16 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 ## 2026-07-03
 
+### 🚀 Updated Scripts
+
+  - Opencloud: Pin to v7.2.0 [@vhsdream](https://github.com/vhsdream) ([#15575](https://github.com/community-scripts/ProxmoxVE/pull/15575))
+
+### 🧰 Tools
+
+  - #### 🐞 Bug Fixes
+
+    - Removed deprecated parameter in Filebrowser Quantum configuration [@alpargatagazer](https://github.com/alpargatagazer) ([#15573](https://github.com/community-scripts/ProxmoxVE/pull/15573))
+
 ## 2026-07-02
 
 ### 🆕 New Scripts
