@@ -501,11 +501,23 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 ## 2026-07-11
 
+### 🆕 New Scripts
+
+  - LocalAGI ([#15687](https://github.com/community-scripts/ProxmoxVE/pull/15687))
+
 ### 🚀 Updated Scripts
+
+  - fix(adventurelog): allow pnpm build scripts so install/update doesn't abort [@TowyTowy](https://github.com/TowyTowy) ([#15681](https://github.com/community-scripts/ProxmoxVE/pull/15681))
 
   - #### 🐞 Bug Fixes
 
     - Fix spacing on VLAN Input Box in haos-vm.sh [@pumrum](https://github.com/pumrum) ([#15696](https://github.com/community-scripts/ProxmoxVE/pull/15696))
+
+### 💾 Core
+
+  - #### ✨ New Features
+
+    - [tools.func]: Add function to handle deployment via GitLab release tags [@tremor021](https://github.com/tremor021) ([#15641](https://github.com/community-scripts/ProxmoxVE/pull/15641))
 
 ## 2026-07-10
 
