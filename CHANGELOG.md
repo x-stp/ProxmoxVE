@@ -499,6 +499,28 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 </details>
 
+## 2026-07-11
+
+### 🚀 Updated Scripts
+
+  - #### 🐞 Bug Fixes
+
+    - Fix spacing on VLAN Input Box in haos-vm.sh [@pumrum](https://github.com/pumrum) ([#15696](https://github.com/community-scripts/ProxmoxVE/pull/15696))
+
+## 2026-07-10
+
+### 🆕 New Scripts
+
+  - Squid ([#15605](https://github.com/community-scripts/ProxmoxVE/pull/15605))
+
+### 🚀 Updated Scripts
+
+  - #### 🐞 Bug Fixes
+
+    - Adapt to new artifact filename format for pocket id [@wollew](https://github.com/wollew) ([#15689](https://github.com/community-scripts/ProxmoxVE/pull/15689))
+    - Fireshare: Fix for install and upgrade to v1.7.3 [@tremor021](https://github.com/tremor021) ([#15673](https://github.com/community-scripts/ProxmoxVE/pull/15673))
+    - Endurain: Fix update procedure [@tremor021](https://github.com/tremor021) ([#15674](https://github.com/community-scripts/ProxmoxVE/pull/15674))
+
 ## 2026-07-09
 
 ### 🚀 Updated Scripts
