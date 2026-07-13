@@ -506,9 +506,28 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 ### 🚀 Updated Scripts
 
+  - fix(hyperion): keep service running after container reboot [@TowyTowy](https://github.com/TowyTowy) ([#15653](https://github.com/community-scripts/ProxmoxVE/pull/15653))
+
+  - #### 🐞 Bug Fixes
+
+    - immich: use actual PostgreSQL version for VectorChord package lookup [@mnavon](https://github.com/mnavon) ([#15705](https://github.com/community-scripts/ProxmoxVE/pull/15705))
+    - fix storyteller release selection for stable web tags [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#15736](https://github.com/community-scripts/ProxmoxVE/pull/15736))
+    - Docmost: Fix update procedure [@MickLesk](https://github.com/MickLesk) ([#15732](https://github.com/community-scripts/ProxmoxVE/pull/15732))
+    - fix(shinobi): remove obsolete --unsafe-perm npm flag [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#15730](https://github.com/community-scripts/ProxmoxVE/pull/15730))
+
   - #### 💥 Breaking Changes
 
     - reitti: update to v5 [@CrazyWolf13](https://github.com/CrazyWolf13) ([#15635](https://github.com/community-scripts/ProxmoxVE/pull/15635))
+
+### 💾 Core
+
+  - #### 🐞 Bug Fixes
+
+    - fix(build.func): parse script status without jq dependency [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#15729](https://github.com/community-scripts/ProxmoxVE/pull/15729))
+
+  - #### 🔧 Refactor
+
+    - tools.func: some improvements (sql injection / command injection / guard) [@MickLesk](https://github.com/MickLesk) ([#15661](https://github.com/community-scripts/ProxmoxVE/pull/15661))
 
 ## 2026-07-12
 
