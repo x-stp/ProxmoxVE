@@ -504,6 +504,12 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 ## 2026-07-16
 
+### 🆕 New Scripts
+
+  - Sync-In ([#15812](https://github.com/community-scripts/ProxmoxVE/pull/15812))
+- Beaverhabits ([#15813](https://github.com/community-scripts/ProxmoxVE/pull/15813))
+- Notediscovery ([#15811](https://github.com/community-scripts/ProxmoxVE/pull/15811))
+
 ### 🚀 Updated Scripts
 
   - #### 🐞 Bug Fixes
