@@ -512,7 +512,19 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
   - #### ✨ New Features
 
+    - n8n: unpin / use latest release [@MickLesk](https://github.com/MickLesk) ([#15817](https://github.com/community-scripts/ProxmoxVE/pull/15817))
     - Pin Opencloud to v7.3.0 [@vhsdream](https://github.com/vhsdream) ([#15826](https://github.com/community-scripts/ProxmoxVE/pull/15826))
+
+### 💾 Core
+
+  - #### ✨ New Features
+
+    - tools.func: enhance rbenv with profile updates / bundle in bashrc [@MickLesk](https://github.com/MickLesk) ([#15822](https://github.com/community-scripts/ProxmoxVE/pull/15822))
+    - feat(build.func): notify users when already on a pinned script version [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#15819](https://github.com/community-scripts/ProxmoxVE/pull/15819))
+
+  - #### 💥 Breaking Changes
+
+    - MongoDB: Implement kernel version check and patch [@MickLesk](https://github.com/MickLesk) ([#15821](https://github.com/community-scripts/ProxmoxVE/pull/15821))
 
 ### 🧰 Tools
 

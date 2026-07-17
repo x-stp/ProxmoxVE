@@ -7431,6 +7431,18 @@ setup_mongodb() {
   mkdir -p /var/lib/mongodb
   chown -R mongodb:mongodb /var/lib/mongodb
 
+  local KERNEL_VERSION MONGO_MAJOR
+  KERNEL_VERSION=$(uname -r | cut -d- -f1)
+  MONGO_MAJOR="${MONGO_VERSION%%.*}"
+  if ((MONGO_MAJOR >= 8)) && [[ "$(printf '%s\n' "6.19" "$KERNEL_VERSION" | sort -V | head -n1)" == "6.19" ]]; then
+    mkdir -p /etc/systemd/system/mongod.service.d
+    cat <<EOF >/etc/systemd/system/mongod.service.d/rseq.conf
+[Service]
+Environment=GLIBC_TUNABLES=glibc.pthread.rseq=1
+EOF
+    systemctl daemon-reload
+  fi
+
   $STD systemctl enable mongod || {
     msg_warn "Failed to enable mongod service"
   }
@@ -8677,6 +8689,7 @@ setup_postgresql_db() {
   export PG_DB_USER
   export PG_DB_PASS
 }
+
 # ------------------------------------------------------------------------------
 # Installs rbenv and ruby-build, installs Ruby and optionally Rails.
 #
@@ -8696,7 +8709,25 @@ setup_ruby() {
   local RBENV_DIR="$HOME/.rbenv"
   local RBENV_BIN="$RBENV_DIR/bin/rbenv"
   local PROFILE_FILE="$HOME/.profile"
+  local BASH_PROFILE_FILE="$HOME/.bash_profile"
+  local BASHRC_FILE="$HOME/.bashrc"
   local TMP_DIR=$(mktemp -d)
+
+  if ! grep -q 'rbenv init' "$PROFILE_FILE" 2>/dev/null; then
+    cat <<'EOF' >>"$PROFILE_FILE"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+EOF
+  fi
+  if ! grep -q '.rbenv/shims' "$PROFILE_FILE" 2>/dev/null; then
+    echo 'export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"' >>"$PROFILE_FILE"
+  fi
+  if [[ -f "$BASH_PROFILE_FILE" ]] && ! grep -q '.rbenv/shims' "$BASH_PROFILE_FILE"; then
+    echo 'export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"' >>"$BASH_PROFILE_FILE"
+  fi
+  if [[ -f "$BASHRC_FILE" ]] && ! grep -q '.rbenv/shims' "$BASHRC_FILE"; then
+    echo 'export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"' >>"$BASHRC_FILE"
+  fi
 
   # Get currently installed Ruby version
   local CURRENT_RUBY_VERSION=""
