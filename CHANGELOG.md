@@ -502,6 +502,20 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
 </details>
 
+## 2026-07-17
+
+### 🚀 Updated Scripts
+
+  - #### ✨ New Features
+
+    - Pin Opencloud to v7.3.0 [@vhsdream](https://github.com/vhsdream) ([#15826](https://github.com/community-scripts/ProxmoxVE/pull/15826))
+
+### 🧰 Tools
+
+  - #### ✨ New Features
+
+    - update-lxc: autoremove and autoclean after apt full-upgrade [@soupy-boy](https://github.com/soupy-boy) ([#15831](https://github.com/community-scripts/ProxmoxVE/pull/15831))
+
 ## 2026-07-16
 
 ### 🆕 New Scripts
