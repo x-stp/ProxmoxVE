@@ -38,13 +38,14 @@ function update_script() {
 
   NODE_VERSION="24" setup_nodejs
   setup_go
-  UV_PYTHON_INSTALL_DIR="/usr/local/bin" PYTHON_VERSION="3.14.3" setup_uv
+  $STD uv cache clean
+  UV_PYTHON_INSTALL_DIR="/usr/local/bin" PYTHON_VERSION="3.14.6" setup_uv
   RUST_PROFILE="minimal" RUST_TOOLCHAIN="stable" setup_rust
   setup_yq
 
-  AUTHENTIK_VERSION="version/2026.5.3"
+  AUTHENTIK_VERSION="version/2026.5.5"
   # Source: https://github.com/goauthentik/fips/blob/main/Makefile#L26
-  XMLSEC_VERSION="1.3.11"
+  XMLSEC_VERSION="1.3.12"
 
   if check_for_gh_release "geoipupdate" "maxmind/geoipupdate"; then
     fetch_and_deploy_gh_release "geoipupdate" "maxmind/geoipupdate" "binary"
