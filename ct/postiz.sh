@@ -41,9 +41,12 @@ function update_script() {
 
     CLEAN_INSTALL=1 fetch_and_deploy_gh_release "postiz" "gitroomhq/postiz-app" "tarball"
 
+    # Restore BEFORE the build: CLEAN_INSTALL wiped /opt/postiz including .env,
+    # and the build below sources it
+    restore_backup
+
     msg_info "Building Application"
     cd /opt/postiz
-    cp /opt/postiz_env.bak /opt/postiz/.env
     set -a && source /opt/postiz/.env && set +a
     export NODE_OPTIONS="--max-old-space-size=4096"
     $STD pnpm install
@@ -57,7 +60,6 @@ function update_script() {
     msg_ok "Ran Database Migrations"
 
     mkdir -p /opt/postiz/uploads
-    restore_backup
 
     msg_info "Starting Services"
     systemctl start postiz-backend postiz-frontend postiz-orchestrator

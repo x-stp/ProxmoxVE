@@ -42,6 +42,9 @@ function update_script() {
 
     CLEAN_INSTALL=1 fetch_and_deploy_gh_release "nametag" "mattogodoy/nametag" "tarball" "latest" "/opt/nametag"
 
+    # Restore .env BEFORE the build: CLEAN_INSTALL wiped it and the build sources it
+    cp /opt/nametag.env.bak /opt/nametag/.env
+
     msg_info "Rebuilding Application"
     cd /opt/nametag
     $STD npm ci
