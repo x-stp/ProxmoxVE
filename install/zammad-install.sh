@@ -31,6 +31,8 @@ $STD apt install -y elasticsearch
 sed -i 's/^#\{0,2\} *-Xms[0-9]*g.*/-Xms2g/' /etc/elasticsearch/jvm.options
 sed -i 's/^#\{0,2\} *-Xmx[0-9]*g.*/-Xmx2g/' /etc/elasticsearch/jvm.options
 cat <<EOF >/etc/elasticsearch/elasticsearch.yml
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
 discovery.type: single-node
 network.host: 127.0.0.1
 xpack.security.enabled: false
