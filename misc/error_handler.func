@@ -497,7 +497,10 @@ error_handler() {
       fi
 
       local response=""
-      if read -t 60 -r response; then
+      local read_rc
+      read -t 60 -r response
+      read_rc=$?
+      if [[ $read_rc -eq 0 ]]; then
         if [[ -z "$response" || "$response" =~ ^[Yy]$ ]]; then
           echo ""
           if declare -f msg_info >/dev/null 2>&1; then
@@ -520,7 +523,7 @@ error_handler() {
             echo -e "${YW}Container ${CTID} kept for debugging${CL}"
           fi
         fi
-      else
+      elif [[ $read_rc -gt 128 ]]; then
         # Timeout - auto-remove
         echo ""
         if declare -f msg_info >/dev/null 2>&1; then
@@ -534,6 +537,18 @@ error_handler() {
           msg_ok "Container ${CTID} removed"
         else
           echo -e "${GN}✔${CL} Container ${CTID} removed"
+        fi
+      else
+        # read itself failed (e.g. broken/closed stdin, I/O error) rather than
+        # timing out - don't guess and destroy the container on a read we
+        # couldn't actually capture; keep it since that's the reversible choice.
+        echo ""
+        if declare -f msg_error >/dev/null 2>&1; then
+          msg_error "Could not read your response (stdin error) - keeping container ${CTID} for safety."
+          msg_error "Remove it manually if not needed: pct destroy ${CTID}"
+        else
+          echo -e "${YW}Could not read your response (stdin error) - keeping container ${CTID} for safety.${CL}"
+          echo -e "${YW}Remove it manually if not needed: pct destroy ${CTID}${CL}"
         fi
       fi
     fi

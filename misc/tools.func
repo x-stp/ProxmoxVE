@@ -2689,7 +2689,7 @@ fetch_and_deploy_gh_tag() {
 
   local tmpdir
   tmpdir=$(mktemp -d) || return 1
-  trap 'rm -rf "$tmpdir"' RETURN
+  trap 'rm -rf "$tmpdir"; trap - RETURN' RETURN
   local tarball_url="https://github.com/${repo}/archive/refs/tags/${version}.tar.gz"
   local filename="${app_lc}-${version}.tar.gz"
 
@@ -2866,7 +2866,7 @@ fetch_and_deploy_gl_tag() {
 
   local tmpdir
   tmpdir=$(mktemp -d) || return 1
-  trap 'rm -rf "$tmpdir"' RETURN
+  trap 'rm -rf "$tmpdir"; trap - RETURN' RETURN
   local filename="${app_lc}-${version_safe}.tar.gz"
 
   msg_info "Fetching GitLab tag: ${app} (${resolved_tag})"
@@ -2974,7 +2974,7 @@ check_for_gh_release() {
 
   local gh_check_json=""
   gh_check_json=$(mktemp /tmp/tools-gh-check-XXXXXX) || return 73
-  trap 'rm -f "${gh_check_json:-}"' RETURN
+  trap 'rm -f "${gh_check_json:-}"; trap - RETURN' RETURN
 
   # Build auth header if token is available
   local header_args=()
@@ -3574,7 +3574,7 @@ fetch_and_deploy_codeberg_release() {
 
     local tmpdir
     tmpdir=$(mktemp -d) || return 252
-    trap 'rm -rf "$tmpdir"' RETURN
+    trap 'rm -rf "$tmpdir"; trap - RETURN' RETURN
 
     msg_info "Fetching Codeberg tag: $app ($tag_name)"
 
@@ -3616,7 +3616,7 @@ fetch_and_deploy_codeberg_release() {
 
   local codeberg_rel_json
   codeberg_rel_json=$(mktemp /tmp/tools-codeberg-rel-XXXXXX) || return 73
-  trap 'rm -f "$codeberg_rel_json"; rm -rf "${tmpdir:-}" "${unpack_tmp:-}"' RETURN
+  trap 'rm -f "$codeberg_rel_json"; rm -rf "${tmpdir:-}" "${unpack_tmp:-}"; trap - RETURN' RETURN
 
   local attempt=0 success=false resp http_code
 
@@ -4113,7 +4113,7 @@ fetch_and_deploy_gh_release() {
 
   local tmpdir
   tmpdir=$(mktemp -d) || return 1
-  trap 'rm -rf "$tmpdir" "${unpack_tmp:-}"' RETURN
+  trap 'rm -rf "$tmpdir" "${unpack_tmp:-}"; trap - RETURN' RETURN
   local filename="" url=""
 
   msg_info "Fetching GitHub release: $app ($version)"
@@ -9218,7 +9218,7 @@ fetch_and_deploy_from_url() {
     msg_error "Failed to create temporary directory"
     return 252
   }
-  trap 'rm -rf "$tmpdir" "${unpack_tmp:-}"' RETURN
+  trap 'rm -rf "$tmpdir" "${unpack_tmp:-}"; trap - RETURN' RETURN
 
   curl -fsSL -o "$tmpdir/$filename" "$url" || {
     msg_error "Download failed: $url"
@@ -9434,7 +9434,7 @@ check_for_gl_release() {
 
   local gl_check_json
   gl_check_json=$(mktemp /tmp/tools-gl-check-XXXXXX) || return 73
-  trap 'rm -f "$gl_check_json"' RETURN
+  trap 'rm -f "$gl_check_json"; trap - RETURN' RETURN
 
   local repo_encoded
   repo_encoded=$(printf '%s' "$source" | sed 's|/|%2F|g')
@@ -9724,7 +9724,7 @@ fetch_and_deploy_gl_release() {
 
   local gl_rel_json
   gl_rel_json=$(mktemp /tmp/tools-gl-rel-XXXXXX) || return 73
-  trap 'rm -f "$gl_rel_json"; rm -rf "${tmpdir:-}" "${unpack_tmp:-}"' RETURN
+  trap 'rm -f "$gl_rel_json"; rm -rf "${tmpdir:-}" "${unpack_tmp:-}"; trap - RETURN' RETURN
 
   local repo_encoded
   repo_encoded=$(printf '%s' "$repo" | sed 's|/|%2F|g')

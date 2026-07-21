@@ -5140,7 +5140,10 @@ EOF
     echo -en "${YW}Select option [1-${max_option}] (default: 1, auto-remove in 60s): ${CL}"
 
     local response=""
-    if read -t 60 -r response; then
+    local read_rc
+    read -t 60 -r response
+    read_rc=$?
+    if [[ $read_rc -eq 0 ]]; then
       case "${response:-1}" in
       1)
         # Remove container
@@ -5359,13 +5362,20 @@ EOF
         fi
         ;;
       esac
-    else
+    elif [[ $read_rc -gt 128 ]]; then
       # Timeout - auto-remove
       echo ""
       msg_info "No response - removing container ${CTID}"
       pct stop "$CTID" &>/dev/null || true
       pct destroy "$CTID" &>/dev/null || true
       msg_ok "Container ${CTID} removed"
+    else
+      # read itself failed (e.g. broken/closed stdin, I/O error) rather than
+      # timing out - don't guess and destroy the container on a read we
+      # couldn't actually capture; keep it since that's the reversible choice.
+      echo ""
+      msg_error "Could not read your response (stdin error) - keeping container ${CTID} for safety."
+      msg_error "Remove it manually if not needed: pct destroy ${CTID}"
     fi
 
     # Force one final status update attempt after cleanup
