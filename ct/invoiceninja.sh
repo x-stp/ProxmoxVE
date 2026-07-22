@@ -35,11 +35,17 @@ function update_script() {
     systemctl stop supervisor nginx php8.4-fpm
     msg_ok "Stopped Services"
 
-    create_backup /opt/invoiceninja/.env /opt/invoiceninja/storage /opt/invoiceninja/public/storage
+    create_backup /opt/invoiceninja/.env /opt/invoiceninja/storage /opt/invoiceninja/public/storage /opt/invoiceninja/vendor/beganovich/snappdf/versions
 
     CLEAN_INSTALL=1 fetch_and_deploy_gh_release "invoiceninja" "invoiceninja/invoiceninja" "prebuild" "latest" "/opt/invoiceninja" "invoiceninja.tar.gz"
 
     restore_backup
+
+    msg_info "Verifying Chromium for PDF Generation"
+    cd /opt/invoiceninja
+    $STD ./vendor/bin/snappdf download
+    chown -R www-data:www-data /opt/invoiceninja/vendor/beganovich/snappdf/versions
+    msg_ok "Verified Chromium for PDF Generation"
 
     msg_info "Running Migrations"
     cd /opt/invoiceninja 
