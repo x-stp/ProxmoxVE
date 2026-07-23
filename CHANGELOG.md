@@ -511,7 +511,13 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 
   - #### 🐞 Bug Fixes
 
+    - IronClaw: pin to v0.29.1, 1.0 Reborn CLI/config is incompatible [@MickLesk](https://github.com/MickLesk) ([#15982](https://github.com/community-scripts/ProxmoxVE/pull/15982))
     - update authentik to 2026.5.6 [@thieneret](https://github.com/thieneret) ([#15973](https://github.com/community-scripts/ProxmoxVE/pull/15973))
+
+  - #### ✨ New Features
+
+    - Cockpit: default to Debian 13, 45Drives now ships Trixie packages | little refactor [@MickLesk](https://github.com/MickLesk) ([#15984](https://github.com/community-scripts/ProxmoxVE/pull/15984))
+    - Paperless-ngx: Support v3 [@tomfrenzel](https://github.com/tomfrenzel) ([#15221](https://github.com/community-scripts/ProxmoxVE/pull/15221))
 
 ## 2026-07-22
 
